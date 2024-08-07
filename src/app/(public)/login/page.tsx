@@ -32,7 +32,7 @@ export default function LoginPage() {
           >
             Email address
           </label>
-          <div className="mt-2">
+          <div className="mt-1">
             <input
               id="email"
               name="email"
@@ -40,7 +40,7 @@ export default function LoginPage() {
               required
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
-              className="pl-2 block w-full text-primary-content rounded-md py-2 shadow-sm sm:text-sm sm:leading-6"
+              className="pl-2 block w-full text-primary-content rounded-md py-2 shadow-sm sm:text-sm sm:leading-6 ring-1 ring-inset ring-primary-content/25"
             />
           </div>
         </div>
