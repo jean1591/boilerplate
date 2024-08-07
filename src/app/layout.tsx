@@ -16,7 +16,10 @@ export default function RootLayout({
     <StoreProvider>
       <html lang="fr">
         <body
-          className={classNames(inter.className, "bg-slate-800 text-slate-100")}
+          className={classNames(
+            inter.className,
+            "bg-primary text-primary-content"
+          )}
         >
           <Toaster position="bottom-right" reverseOrder={true} />
           {children}

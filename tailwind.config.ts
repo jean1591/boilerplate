@@ -5,10 +5,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        pastel: {
-          green: "#519975",
-          red: "#B89076",
-        },
+        primary: "#DCE4E8",
+        "primary-content": "#1D2B36",
+        secondary: "#3F6E93",
+        "secondary-content": "#83B5C4",
       },
     },
   },
