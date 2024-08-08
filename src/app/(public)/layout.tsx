@@ -1,4 +1,4 @@
-export default function PrivateLayout({
+export default function PublicLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
