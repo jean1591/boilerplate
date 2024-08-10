@@ -29,7 +29,7 @@ Go to `https://supabase.com/dashboard/project/<your supabase projectId>/auth/url
 
 For instance, if your website is hosted at `https://jeanrobertou.com`, use this as `Site URL`.
 
-In order to work in development, you can add `Redirect URLs`. For instance, if your app is running locally on port 3000, you can use `http://localhost:3000`.
+In order to work in development, you can add `Redirect URLs`. For instance, if your app is running locally on port 3000, you can use `http://localhost:3000/**`.
 
 ## Database
 
