@@ -1,9 +1,9 @@
-"use server";
+'use server'
 
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from '@/utils/supabase/server'
 
 export async function login({ email }: { email: string }) {
-  const supabase = createClient();
+  const supabase = createClient()
 
   const { error } = await supabase.auth.signInWithOtp({
     email,
@@ -11,7 +11,7 @@ export async function login({ email }: { email: string }) {
       shouldCreateUser: true,
       emailRedirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/private`,
     },
-  });
+  })
 
-  return { error };
+  return { error }
 }

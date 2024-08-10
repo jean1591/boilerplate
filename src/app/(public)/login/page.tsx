@@ -1,20 +1,20 @@
-"use client";
+'use client'
 
-import { login } from "./actions";
-import toast from "react-hot-toast";
-import { useState } from "react";
+import { login } from './actions'
+import toast from 'react-hot-toast'
+import { useState } from 'react'
 
 const notify = () =>
-  toast.success("Check you emails to login", { duration: 5000 });
+  toast.success('Check you emails to login', { duration: 5000 })
 
 export default function LoginPage() {
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail] = useState<string>('')
 
   const handleLogin = () => {
-    notify();
+    notify()
 
-    login({ email });
-  };
+    login({ email })
+  }
 
   return (
     <div>
@@ -53,5 +53,5 @@ export default function LoginPage() {
         </button>
       </div>
     </div>
-  );
+  )
 }
