@@ -40,14 +40,14 @@ export default function LoginPage() {
               required
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
-              className="block w-full rounded-md py-2 pl-2 text-primary-content shadow-sm ring-1 ring-inset ring-primary-content/25 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md py-2 pl-2 text-slate-800 shadow-sm ring-1 ring-inset ring-slate-800/25 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
 
         <button
           onClick={handleLogin}
-          className="w-full rounded-md bg-primary-content px-4 py-2 text-center text-base font-semibold leading-6 text-primary shadow-sm hover:bg-primary-content/80"
+          className="bgslate-800-content textslate-800 hover:bgslate-800-content/80 w-full rounded-md px-4 py-2 text-center text-base font-semibold leading-6 shadow-sm"
         >
           Log in
         </button>

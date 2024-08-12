@@ -1,16 +1,17 @@
 'use client'
 
 import { createClient } from '@/utils/supabase/client'
-import { redirect } from 'next/navigation'
 import { setUsername } from '../lib/store/features/user/slice'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function PrivateLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const router = useRouter()
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -21,7 +22,8 @@ export default function PrivateLayout({
         const { data, error } = await supabase.auth.getUser()
 
         if (error || !data?.user) {
-          redirect('/login')
+          router.push('/login')
+          return
         }
 
         const { user } = data
@@ -29,7 +31,8 @@ export default function PrivateLayout({
         dispatch(setUsername(user.email!))
       } catch (error) {
         console.error('An error occured when fetching logged in user')
-        redirect('/login')
+        router.push('/login')
+        return
       }
     })()
   }, [])
