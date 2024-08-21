@@ -9,7 +9,7 @@ export async function login({ email }: { email: string }) {
     email,
     options: {
       shouldCreateUser: true,
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/private`,
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
     },
   })
 

@@ -47,7 +47,7 @@ export default function LoginPage() {
 
         <button
           onClick={handleLogin}
-          className="bgslate-800-content textslate-800 hover:bgslate-800-content/80 w-full rounded-md px-4 py-2 text-center text-base font-semibold leading-6 shadow-sm"
+          className="w-full rounded-md bg-slate-800 px-4 py-2 text-center text-base font-semibold leading-6 text-white shadow-sm hover:bg-slate-800/80"
         >
           Log in
         </button>
