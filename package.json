@@ -1,9 +1,9 @@
 {
-  "name": "",
+  "name": "INSERT_NAME",
   "version": "1.0.0",
   "author": {
     "name": "jean robertou",
-    "url": ""
+    "url": "https://[INSERT_NAME].jeanrobertou.com.fr"
   },
   "private": false,
   "scripts": {
