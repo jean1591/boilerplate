@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 const metaDescription = 'Generate this using ChatGPT'
 const titleAndDefault = 'Generate this using ChatGPT'
-const appUrl = 'https://[INSERT_NAME].jeanrobertou.com'
+const appUrl = 'https://my-app-name.jeanrobertou.com'
 
 export const metadata: Metadata = {
   title: {
@@ -43,9 +43,9 @@ export default function RootLayout({
 }>) {
   return (
     <StoreProvider>
-      <html lang="fr">
+      <html lang="fr" className="scroll-smooth">
         <body
-          className={classNames(inter.className, 'bg-white text-slate-800')}
+          className={classNames(inter.className, 'bg-slate-50 text-slate-900')}
         >
           <Toaster position="bottom-right" reverseOrder={true} />
           {children}

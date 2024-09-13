@@ -1,19 +1,28 @@
-const companyName = 'foodr'
+import { bgGradient, textGradient } from '@/app/design/constants'
+
+import { classNames } from '@/utils/classNames'
 
 export default function PrivacyPolicy() {
   return (
     <div>
-      <p className="mt-16 text-4xl font-extrabold text-green-800 md:text-5xl">
+      <p
+        className={classNames(
+          bgGradient,
+          textGradient,
+          'mt-16 text-4xl font-extrabold md:text-5xl'
+        )}
+      >
+        {' '}
         Privacy policy
       </p>
 
       <div className="mt-12 space-y-8">
         <p>
-          This Privacy Policy describes the policies of {companyName}, 1, Not
-          your business, Paris 75001, France, email: {companyName}@mailo.com,
-          phone: 0123456789 on the collection, use and disclosure of your
-          information that we collect when you use our website ( https://www.
-          {companyName}.jeanrobertou.com ). (the “Service”). By accessing or
+          This Privacy Policy describes the policies of Foodr, 1, Not your
+          business, Paris 75001, France, email: foodr@mailo.com, phone:
+          0123456789 on the collection, use and disclosure of your information
+          that we collect when you use our website (
+          https://www.foodr.jeanrobertou.com ). (the “Service”). By accessing or
           using the Service, you are consenting to the collection, use and
           disclosure of your information in accordance with this Privacy Policy.
           If you do not consent to the same, please do not access or use the
@@ -82,9 +91,8 @@ export default function PrivacyPolicy() {
             entity, withdraw any consent you provided to us to process your
             data, a right to lodge a complaint with a statutory authority and
             such other rights as may be relevant under applicable laws. To
-            exercise these rights, you can write to us at {companyName}
-            @mailo.com. We will respond to your request in accordance with
-            applicable law.
+            exercise these rights, you can write to us at foodr@mailo.com. We
+            will respond to your request in accordance with applicable law.
           </p>
           <p>
             Do note that if you do not allow us to collect or process the
@@ -120,9 +128,8 @@ export default function PrivacyPolicy() {
           <p>
             If you have any queries or concerns about the processing of your
             information that is available with us, you may email our Grievance
-            Officer at {companyName}, 1, Not your business, email: {companyName}
-            @mailo.com. We will address your concerns in accordance with
-            applicable law.
+            Officer at foodr, 1, Not your business, email: foodr@mailo.com. We
+            will address your concerns in accordance with applicable law.
           </p>
         </div>
 

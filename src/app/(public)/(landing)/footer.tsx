@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { bgGradient } from '@/app/design/constants'
+import { classNames } from '@/utils/classNames'
 
 const navigation = [
   { name: 'Features', href: '/#features' },
@@ -9,7 +11,7 @@ const navigation = [
 
 export const Footer = () => {
   return (
-    <footer className="mt-24 bg-green-900 text-white md:mt-32">
+    <footer className={classNames(bgGradient, 'text-white')}>
       <div className="mx-auto w-full overflow-hidden px-4 py-8 md:py-12 lg:max-w-5xl">
         <nav
           className="-mb-8 columns-2 md:flex md:justify-center md:space-x-12"
