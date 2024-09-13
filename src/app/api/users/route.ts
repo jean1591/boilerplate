@@ -7,7 +7,7 @@ import { createClient } from '@/utils/supabase/server'
 export async function GET(request: NextRequest) {
   const supabase = createClient()
 
-  const { data: todos } = await supabase.from('todo').select('*')
+  const { data: todos } = await supabase.from('users').select('*')
 
   return NextResponse.json(todos)
 }

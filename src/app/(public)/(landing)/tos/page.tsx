@@ -2,6 +2,8 @@ import { bgGradient, textGradient } from '@/app/design/constants'
 
 import { classNames } from '@/utils/classNames'
 
+// TODO: use variable for company name and email
+
 export default function ToS() {
   return (
     <div>

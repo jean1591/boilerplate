@@ -8,7 +8,8 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const token_hash = searchParams.get('token_hash')
   const type = searchParams.get('type') as EmailOtpType | null
-  const next = searchParams.get('next') ?? '/'
+  // CHANGE HERE: redirect to private page
+  const next = searchParams.get('next') ?? '/private'
 
   if (token_hash && type) {
     const supabase = createClient()
