@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import interactionsReducer from './features/interactions/slice'
-import userReducer from './features/user/slice'
 
 export const store = configureStore({
   reducer: {
     interactions: interactionsReducer,
-    user: userReducer,
   },
 })
 

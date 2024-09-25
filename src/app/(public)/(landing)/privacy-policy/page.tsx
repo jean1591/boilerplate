@@ -1,4 +1,4 @@
-import { bgGradient, textGradient } from '@/app/design/constants'
+import { bgGradient, textGradient } from '@/design/constants'
 
 import { classNames } from '@/utils/classNames'
 

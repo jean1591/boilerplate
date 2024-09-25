@@ -1,16 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import {
-  addCreditsByUserId,
-  addPayment,
-  getUserByPaymentIntentId,
-  withdrawCreditsByUserId,
-} from '@/utils/supabase/admin'
 
 import Stripe from 'stripe'
 import { isNil } from 'lodash'
 
 // TODO: Rename all admin method to be business agnostic
-
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
 export async function POST(req: NextRequest) {
@@ -62,20 +55,7 @@ export async function POST(req: NextRequest) {
           throw new Error('No paymentIntentId linked')
         }
 
-        const user = await getUserByPaymentIntentId(paymentIntentId as string)
-
-        if (isNil(user)) {
-          console.error(
-            `No user found linked to paymentIntentId ${paymentIntentId}`
-          )
-
-          return
-        }
-
-        const { id: supabaseUserId } = user
-
-        await withdrawCreditsByUserId(supabaseUserId)
-
+        // TODO: get user by paymentIntentId and withdraw credits
         break
       }
 
@@ -91,16 +71,7 @@ export async function POST(req: NextRequest) {
 
         const paymentIntentId = checkoutSession.payment_intent
 
-        if (
-          checkoutSession.metadata &&
-          checkoutSession.metadata.supabase_user_id &&
-          paymentIntentId
-        ) {
-          const supabaseUserId = checkoutSession.metadata.supabase_user_id
-          await addCreditsByUserId(supabaseUserId)
-          await addPayment(supabaseUserId, paymentIntentId as string)
-        }
-
+        // TODO: add credits to users
         break
       }
 

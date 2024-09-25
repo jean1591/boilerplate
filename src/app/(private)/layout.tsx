@@ -1,37 +1,18 @@
-'use client'
+import React from 'react'
+import { SessionProvider } from '@/providers/sessionContext'
+import { getServerSession } from 'next-auth'
+import { redirect } from 'next/navigation'
 
-import { User } from '@/utils/interfaces/users'
-import { setUser } from '../lib/store/features/user/slice'
-import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-
-export default function PrivateLayout({
+export default async function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const router = useRouter()
-  const dispatch = useDispatch()
+  const session = await getServerSession()
 
-  useEffect(() => {
-    ;(async function getUser() {
-      try {
-        const userResponse = await fetch('/api/users')
-        const { user } = (await userResponse.json()) as { user: User }
+  if (!session || !session.user) {
+    redirect('/login')
+  }
 
-        dispatch(setUser(user))
-      } catch (error) {
-        console.error('An error occured when fetching logged in user')
-        router.push('/login')
-        return
-      }
-    })()
-  }, [])
-
-  return (
-    <div className="min-h-screen bg-gradient-to-tr from-blue-200 to-green-100 text-blue-950">
-      {children}
-    </div>
-  )
+  return <SessionProvider session={session}>{children}</SessionProvider>
 }

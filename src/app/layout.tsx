@@ -1,8 +1,10 @@
+'use client'
+
 import './globals.css'
 
 import { Inter } from 'next/font/google'
 import { Metadata } from 'next'
-import { StoreProvider } from './lib/store/storeProvider'
+import { StoreProvider } from '@/store/StoreProvider'
 import { Toaster } from 'react-hot-toast'
 import { classNames } from '@/utils/classNames'
 
@@ -43,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <StoreProvider>
-      <html lang="fr" className="scroll-smooth">
+      <html lang="en" className="scroll-smooth">
         <body
           className={classNames(inter.className, 'bg-slate-50 text-slate-900')}
         >

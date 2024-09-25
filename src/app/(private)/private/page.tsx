@@ -1,12 +1,14 @@
 'use client'
 
-/* EXAMPLE PAGE / FOLDER - USE THIS AS TEMPLATE */
+import { useSessionContext } from '@/providers/sessionContext'
 
-import { RootState } from '@/app/lib/store/store'
-import { useSelector } from 'react-redux'
+export default async function PrivatePage() {
+  const { user } = useSessionContext()
 
-export default function PrivatePage() {
-  const { user } = useSelector((state: RootState) => state.user)
-
-  return <p>Hello {user?.username}</p>
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
+      <h1 className="mb-4 text-3xl font-bold">Private Page</h1>
+      <p className="text-xl">User email: {user.email}</p>
+    </div>
+  )
 }
