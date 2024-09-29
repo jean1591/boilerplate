@@ -14,10 +14,6 @@ const handler = NextAuth({
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        console.log('.env:', process.env)
-        console.log('authorize function called')
-        console.log('credentials:', credentials)
-
         if (!credentials?.email || !credentials?.password) {
           return null
         }
