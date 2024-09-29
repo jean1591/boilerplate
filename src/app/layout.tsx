@@ -1,5 +1,3 @@
-'use client'
-
 import './globals.css'
 
 import { Inter } from 'next/font/google'
@@ -20,7 +18,7 @@ export const metadata: Metadata = {
     default: titleAndDefault,
   },
   description: metaDescription,
-  keywords: 'meal, planning, food, ai',
+  keywords: 'Generate this using ChatGPT',
   metadataBase: new URL(appUrl),
   openGraph: {
     title: titleAndDefault,
