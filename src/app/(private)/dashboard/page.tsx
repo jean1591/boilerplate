@@ -1,8 +1,7 @@
-import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'
-import { getServerSession } from 'next-auth'
+import { getSession } from '@/app/api/auth/[...nextauth]/authOptions'
 
 export default async function DashboardPage() {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100">

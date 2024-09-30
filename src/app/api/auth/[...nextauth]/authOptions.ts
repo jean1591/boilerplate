@@ -2,6 +2,7 @@ import { AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import bcrypt from 'bcrypt'
+import { getServerSession } from 'next-auth'
 import prisma from '@/lib/prisma'
 
 export const authOptions: AuthOptions = {
@@ -65,3 +66,5 @@ export const authOptions: AuthOptions = {
     },
   },
 }
+
+export const getSession = async () => await getServerSession(authOptions)
