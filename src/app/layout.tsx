@@ -2,6 +2,7 @@ import './globals.css'
 
 import { Inter } from 'next/font/google'
 import { Metadata } from 'next'
+import NextAuthProvider from './components/NextAuthProvider'
 import { StoreProvider } from '@/store/StoreProvider'
 import { Toaster } from 'react-hot-toast'
 import { classNames } from '@/utils/classNames'
@@ -47,8 +48,10 @@ export default function RootLayout({
         <body
           className={classNames(inter.className, 'bg-slate-50 text-slate-900')}
         >
-          <Toaster position="bottom-right" reverseOrder={true} />
-          {children}
+          <NextAuthProvider>
+            <Toaster position="bottom-right" reverseOrder={true} />
+            {children}
+          </NextAuthProvider>
         </body>
       </html>
     </StoreProvider>

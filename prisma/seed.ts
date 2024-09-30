@@ -27,7 +27,7 @@ async function main() {
     })
   }
 
-  console.log('Seed data inserted successfully.')
+  console.info('Seed data inserted successfully.')
 }
 
 main()
