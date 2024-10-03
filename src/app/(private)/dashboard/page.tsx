@@ -1,6 +1,11 @@
+import { DashboardDto } from '@/app/api/dashboard/route'
+import { fetchDataFromApi } from '@/utils/fetchDataFromApi'
 import { getSession } from '@/app/api/auth/[...nextauth]/authOptions'
 
 export default async function DashboardPage() {
+  const data = await fetchDataFromApi<DashboardDto>('api/dashboard')
+  const { example } = data
+
   const session = await getSession()
 
   return (
