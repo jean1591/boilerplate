@@ -2,6 +2,7 @@ import { DashboardDto } from '@/app/api/dashboard/route'
 import { fetchDataFromApi } from '@/utils/fetchDataFromApi'
 import { getSession } from '@/app/api/auth/[...nextauth]/authOptions'
 
+// TODO: add <DataFetcher example={example} />
 export default async function DashboardPage() {
   const data = await fetchDataFromApi<DashboardDto>('api/dashboard')
   const { example } = data
