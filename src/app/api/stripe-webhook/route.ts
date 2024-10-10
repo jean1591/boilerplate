@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { endpointFormatter, logger } from '../utils/logger'
 
 import Stripe from 'stripe'
 import { isNil } from 'lodash'
@@ -6,9 +7,11 @@ import { isNil } from 'lodash'
 // TODO: Rename all admin method to be business agnostic
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
-export async function POST(req: NextRequest) {
-  const body = await req.text()
-  const sig = req.headers.get('stripe-signature') as string
+export async function POST(request: NextRequest) {
+  logger.info(endpointFormatter(request))
+
+  const body = await request.text()
+  const sig = request.headers.get('stripe-signature') as string
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
   let event: Stripe.Event
 

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { endpointFormatter, logger } from '../utils/logger'
 
 import Stripe from 'stripe'
 import { getSession } from 'next-auth/react'
@@ -7,9 +8,11 @@ import { redirect } from 'next/navigation'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
-export async function POST(req: NextRequest) {
+export async function POST(request: NextRequest) {
+  logger.info(endpointFormatter(request))
+
   try {
-    const body = await req.json()
+    const body = await request.json()
 
     const webSession = await getSession()
 
@@ -44,8 +47,8 @@ export async function POST(req: NextRequest) {
         },
       ],
       // CHANGE HERE: redirect to private page
-      success_url: `${req.headers.get('origin')}/generate`,
-      cancel_url: `${req.headers.get('origin')}/generate`,
+      success_url: `${request.headers.get('origin')}/generate`,
+      cancel_url: `${request.headers.get('origin')}/generate`,
     })
 
     return NextResponse.json({ id: stripeSession.id })
