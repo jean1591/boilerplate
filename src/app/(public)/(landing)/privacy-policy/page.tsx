@@ -2,7 +2,9 @@ import { bgGradient, textGradient } from '@/design/constants'
 
 import { classNames } from '@/utils/classNames'
 
-// TODO: use variable for company name and email
+const companyName = 'YourApp'
+const companyEmail = 'hello@your-app.com'
+const companyUrl = 'https://your-app.com'
 
 export default function PrivacyPolicy() {
   return (
@@ -20,21 +22,20 @@ export default function PrivacyPolicy() {
 
       <div className="mt-12 space-y-8">
         <p>
-          This Privacy Policy describes the policies of Foodr, 1, Not your
-          business, Paris 75001, France, email: foodr@mailo.com, phone:
+          This Privacy Policy describes the policies of {companyName}, 1, Not
+          your business, Paris 75001, France, email: {companyEmail}, phone:
           0123456789 on the collection, use and disclosure of your information
-          that we collect when you use our website (
-          https://www.foodr.jeanrobertou.com ). (the “Service”). By accessing or
-          using the Service, you are consenting to the collection, use and
-          disclosure of your information in accordance with this Privacy Policy.
-          If you do not consent to the same, please do not access or use the
-          Service. We may modify this Privacy Policy at any time without any
-          prior notice to you and will post the revised Privacy Policy on the
-          Service. The revised Policy will be effective 180 days from when the
-          revised Policy is posted in the Service and your continued access or
-          use of the Service after such time will constitute your acceptance of
-          the revised Privacy Policy. We therefore recommend that you
-          periodically review this page.
+          that we collect when you use our website ({companyUrl}). (the
+          “Service”). By accessing or using the Service, you are consenting to
+          the collection, use and disclosure of your information in accordance
+          with this Privacy Policy. If you do not consent to the same, please do
+          not access or use the Service. We may modify this Privacy Policy at
+          any time without any prior notice to you and will post the revised
+          Privacy Policy on the Service. The revised Policy will be effective
+          180 days from when the revised Policy is posted in the Service and
+          your continued access or use of the Service after such time will
+          constitute your acceptance of the revised Privacy Policy. We therefore
+          recommend that you periodically review this page.
         </p>
 
         <div>
@@ -45,7 +46,7 @@ export default function PrivacyPolicy() {
           </p>
 
           <ul className="list-disc">
-            <li className="ml-8">Name</li>
+            <li className="ml-8">Username</li>
             <li className="ml-8">Email</li>
           </ul>
         </div>
@@ -93,7 +94,7 @@ export default function PrivacyPolicy() {
             entity, withdraw any consent you provided to us to process your
             data, a right to lodge a complaint with a statutory authority and
             such other rights as may be relevant under applicable laws. To
-            exercise these rights, you can write to us at foodr@mailo.com. We
+            exercise these rights, you can write to us at {companyEmail}. We
             will respond to your request in accordance with applicable law.
           </p>
           <p>
@@ -130,12 +131,12 @@ export default function PrivacyPolicy() {
           <p>
             If you have any queries or concerns about the processing of your
             information that is available with us, you may email our Grievance
-            Officer at foodr, 1, Not your business, email: foodr@mailo.com. We
-            will address your concerns in accordance with applicable law.
+            Officer at {companyEmail}. We will address your concerns in
+            accordance with applicable law.
           </p>
         </div>
 
-        <p>This policy is effective as of 01 July 2024.</p>
+        <p>This policy is effective as of 01 November 2024.</p>
       </div>
     </div>
   )

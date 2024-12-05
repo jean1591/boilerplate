@@ -9,48 +9,48 @@ datasource db {
 
 model User {
     id            String    @id @default(cuid())
-    name          String?
+    createdAt     DateTime  @default(now())
     email         String    @unique
-    password      String
     emailVerified DateTime?
     image         String?
-    createdAt     DateTime  @default(now())
+    name          String?
+    password      String
     updatedAt     DateTime  @updatedAt
-    accounts      Account[]
-    sessions      Session[]
+
+    accounts Account[]
+    sessions Session[]
 }
 
 model Account {
     id                String  @id @default(cuid())
-    userId            String
-    type              String
+    access_token      String? @db.Text
+    expires_at        Int?
+    id_token          String? @db.Text
     provider          String
     providerAccountId String
     refresh_token     String? @db.Text
-    access_token      String? @db.Text
-    expires_at        Int?
-    token_type        String?
     scope             String?
-    id_token          String? @db.Text
     session_state     String?
-
-    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    token_type        String?
+    type              String
+    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId            String
 
     @@unique([provider, providerAccountId])
 }
 
 model Session {
     id           String   @id @default(cuid())
-    sessionToken String   @unique
-    userId       String
     expires      DateTime
+    sessionToken String   @unique
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId       String
 }
 
 model VerificationToken {
     identifier String
-    token      String   @unique
     expires    DateTime
+    token      String   @unique
 
     @@unique([identifier, token])
 }

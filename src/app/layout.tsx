@@ -3,6 +3,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { Metadata } from 'next'
 import NextAuthProvider from './components/NextAuthProvider'
+import Script from 'next/script'
 import { StoreProvider } from '@/store/StoreProvider'
 import { Toaster } from 'react-hot-toast'
 import { classNames } from '@/utils/classNames'
@@ -35,6 +36,20 @@ export const metadata: Metadata = {
     ],
     type: 'website',
   },
+  twitter: {
+    title: titleAndDefault,
+    card: 'summary',
+    description: metaDescription,
+    images: [
+      {
+        url: `${appUrl}/hero-profile.png`,
+        alt: titleAndDefault,
+      },
+    ],
+  },
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_URL!}`,
+  },
 }
 
 export default function RootLayout({
@@ -49,6 +64,12 @@ export default function RootLayout({
           className={classNames(inter.className, 'bg-slate-50 text-slate-900')}
         >
           <NextAuthProvider>
+            <Script
+              defer
+              src={process.env.UMAMI_URL ?? ''}
+              data-website-id={process.env.UMAMI_SITE_ID ?? ''}
+              strategy="afterInteractive"
+            />
             <Toaster position="bottom-right" reverseOrder={true} />
             {children}
           </NextAuthProvider>
