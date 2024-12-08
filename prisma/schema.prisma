@@ -19,6 +19,7 @@ model User {
 
     accounts Account[]
     sessions Session[]
+    Payment  Payment[]
 }
 
 model Account {
@@ -53,4 +54,25 @@ model VerificationToken {
     token      String   @unique
 
     @@unique([identifier, token])
+}
+
+model Product {
+    id        String @id @default(cuid())
+    env       String @default("dev")
+    name      String
+    price     Float
+    priceId   String @unique // Stripe price ID
+    productId String @unique // Stripe product ID
+}
+
+model Payment {
+    id              String   @id @default(cuid())
+    createdAt       DateTime @default(now())
+    feedbacks       Int      @default(0)
+    paymentIntentId String   @unique // Stripe payment intent ID
+    productName     String
+    status          String   @default("paid")
+    userId          String
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

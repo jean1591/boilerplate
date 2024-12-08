@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { endpointFormatter, logger } from '../utils/logger'
 
+import { Metadata } from '@stripe/stripe-js'
 import Stripe from 'stripe'
 import { isNil } from 'lodash'
+import prisma from '@/lib/prisma'
 
 // TODO: Rename all admin method to be business agnostic
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
@@ -49,16 +51,64 @@ export async function POST(request: NextRequest) {
 
         break
       }
+
       // Refund of a successful payment
       case 'charge.refunded': {
         const refundSession = event.data.object
-        const paymentIntentId = refundSession.payment_intent
+        const paymentIntentId = refundSession.payment_intent as string
 
         if (isNil(paymentIntentId)) {
-          throw new Error('No paymentIntentId linked')
+          const errorMessage =
+            'Stripe - charge.refunded - No paymentIntentId linked'
+
+          logger.error(errorMessage)
+          throw new Error(errorMessage)
         }
 
-        // TODO: get user by paymentIntentId and withdraw credits
+        const payment = await prisma.payment.findFirst({
+          where: {
+            paymentIntentId,
+          },
+        })
+
+        if (isNil(payment)) {
+          const errorMessage =
+            'Stripe - charge.refunded - No payment linked to paymentIntentId'
+
+          logger.error(errorMessage)
+          throw new Error(errorMessage)
+        }
+
+        try {
+          await prisma.$transaction([
+            prisma.user.update({
+              where: {
+                id: payment.userId,
+              },
+              data: {
+                // Update user data here - For instance, deduct credits
+              },
+            }),
+
+            prisma.payment.update({
+              where: {
+                id: payment.id,
+              },
+              data: {
+                status: 'refunded',
+              },
+            }),
+          ])
+        } catch (error: any) {
+          const errorMessage = `Stripe - charge.refunded - Error updating user credits - ${payment.userId} - ${paymentIntentId}`
+
+          logger.error(errorMessage)
+          throw new Error(errorMessage)
+        }
+
+        logger.info(
+          `Stripe - charge.refunded - ${payment.userId} - ${paymentIntentId}`
+        )
         break
       }
 
@@ -72,9 +122,43 @@ export async function POST(request: NextRequest) {
           )
         }
 
-        const paymentIntentId = checkoutSession.payment_intent
+        const paymentIntentId = checkoutSession.payment_intent as string
 
-        // TODO: add credits to users
+        const { userId, productName } = checkoutSession.metadata as Metadata
+
+        try {
+          await prisma.$transaction([
+            prisma.payment.create({
+              data: {
+                paymentIntentId,
+                productName,
+                status: 'paid',
+                userId,
+              },
+            }),
+
+            prisma.user.update({
+              where: {
+                id: userId,
+              },
+              data: {
+                // Update user data here - For instance, increment credits
+              },
+            }),
+          ])
+        } catch (error) {
+          const errorMessage = `Stripe - checkout.session.completed - Error updating user credits - ${
+            userId
+          } - ${productName} - ${paymentIntentId}`
+
+          logger.error(errorMessage)
+          throw new Error(errorMessage)
+        }
+
+        logger.info(
+          `Stripe - checkout.session.completed - ${userId} - ${productName} - ${paymentIntentId}`
+        )
+
         break
       }
 
